@@ -1,7 +1,7 @@
 # Kodi Media Center language file
-# Addon Name: Security Cam Overlay
-# Addon id: script.securitycam
-# Addon Provider: Paulemann
+# Addon Name: Frigate NVR Integration
+# Addon id: service.kodi.frigate
+# Addon Provider: Matthew Parslow, Paulemann
 msgid ""
 msgstr ""
 "Project-Id-Version: Kodi-Addons\n"
@@ -17,92 +17,104 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 msgctxt "#32000"
-msgid "Camera 1"
-msgstr "Kamera 1"
+msgid "Frigate Server"
+msgstr ""
 
 msgctxt "#32001"
-msgid "Active:"
-msgstr "Aktiv:"
+msgid "Frigate URL:"
+msgstr ""
 
 msgctxt "#32002"
-msgid "Image Url:"
-msgstr "Url:"
+msgid "Benutzername:"
+msgstr ""
 
 msgctxt "#32003"
-msgid "Username:"
-msgstr "Benutzername:"
-
-msgctxt "#32004"
-msgid "Password:"
-msgstr "Passwort:"
+msgid "Passwort:"
+msgstr ""
 
 msgctxt "#32010"
-msgid "Camera 2"
-msgstr "Kamera 2"
+msgid "MQTT Konfiguration"
+msgstr ""
+
+msgctxt "#32011"
+msgid "MQTT Host:"
+msgstr ""
+
+msgctxt "#32012"
+msgid "MQTT Port:"
+msgstr ""
+
+msgctxt "#32013"
+msgid "MQTT Benutzername:"
+msgstr ""
+
+msgctxt "#32014"
+msgid "MQTT Passwort:"
+msgstr ""
+
+msgctxt "#32015"
+msgid "MQTT Topic Präfix:"
+msgstr ""
 
 msgctxt "#32020"
-msgid "Camera 3"
-msgstr "Kamera 3"
+msgid "Erkennungseinstellungen"
+msgstr ""
 
-msgctxt "#32030"
-msgid "Camera 4"
-msgstr "Kamera 4"
+msgctxt "#32021"
+msgid "Auslöseobjekte (Komma getrennt):"
+msgstr ""
 
-msgctxt "#32040"
-msgid "Camera 5"
-msgstr "Kamera 5"
+msgctxt "#32022"
+msgid "Minimale Konfidenz (%):"
+msgstr ""
 
-msgctxt "#32050"
-msgid "Camera 6"
-msgstr "Kamera 6"
+msgctxt "#32023"
+msgid "Nur bei neuen Ereignissen auslösen:"
+msgstr ""
 
-msgctxt "#32060"
-msgid "Camera 7"
-msgstr "Kamera 7"
-
-msgctxt "#32070"
-msgid "Camera 8"
-msgstr "Kamera 8"
+msgctxt "#32024"
+msgid "Auslösekameras (Komma getrennt, leer für alle):"
+msgstr ""
 
 msgctxt "#33000"
-msgid "Behavior"
-msgstr "Anzeige"
+msgid "Anzeigeeinstellungen"
+msgstr ""
 
 msgctxt "#33001"
-msgid "Window Width:"
-msgstr "Fensterbreite:"
+msgid "Kamera-Fensterbreite:"
+msgstr ""
 
 msgctxt "#33002"
-msgid "Window Height:"
-msgstr "Fensterhöhe:"
+msgid "Kamera-Fensterhöhe:"
+msgstr ""
 
 msgctxt "#33003"
-msgid "Refresh Interval (in milliseconds):"
-msgstr "Aktualisierungsinterval (in msec):"
+msgid "Schnappschuss-Aktualisierungsinterval (in msec):"
+msgstr ""
 
 msgctxt "#33004"
-msgid "Enable auto-close after duration:"
-msgstr "Automatisches Schließen:"
+msgid "Kamera-Overlay automatisch schließen:"
+msgstr ""
 
 msgctxt "#33005"
-msgid "Duration (in seconds):"
-msgstr "Anzeigedauer (in Sekunden):"
+msgid "Anzeigedauer (in Sekunden):"
+msgstr ""
 
 msgctxt "#33006"
-msgid "Alignment:"
-msgstr "Ausrichtung:"
+msgid "Ausrichtung:"
+msgstr ""
 
 msgctxt "#33007"
-msgid "Padding (in Pixels):"
-msgstr "Zwischenraum (in Pixeln):"
+msgid "Fenster-Abstand (in Pixeln):"
+msgstr ""
 
 msgctxt "#33008"
-msgid "Animate on open/close:"
-msgstr "Animation beim Öffnen/Schließen:"
+msgid "Kamera beim Öffnen/Schließen animieren:"
+msgstr ""
 
 msgctxt "#33009"
-msgid "Aspect Ratio:"
-msgstr "Bildformat-Anpassung:"
+msgid "Kamera-Seitenverhältnis:"
+msgstr ""
 
 msgctxt "#34000"
 msgid "Vertical: right, from top to bottom"
@@ -163,3 +175,35 @@ msgstr "Vergrößern (Abschneiden)"
 msgctxt "#34022"
 msgid "Scale down (black bars)"
 msgstr "Verkleinern (Schw. Balken)"
+
+msgctxt "#35000"
+msgid "Bildschirmschoner-Einstellungen"
+msgstr ""
+
+msgctxt "#35001"
+msgid "Anzahl der Kameras:"
+msgstr ""
+
+msgctxt "#35002"
+msgid "Kamerawechsel-Intervall (Sekunden):"
+msgstr ""
+
+msgctxt "#35003"
+msgid "Bildschirmschoner-Kameras (Komma getrennt, leer für alle):"
+msgstr ""
+
+msgctxt "#35010"
+msgid "1 Kamera"
+msgstr ""
+
+msgctxt "#35011"
+msgid "2 Kameras"
+msgstr ""
+
+msgctxt "#35012"
+msgid "3 Kameras"
+msgstr ""
+
+msgctxt "#35013"
+msgid "4 Kameras"
+msgstr ""

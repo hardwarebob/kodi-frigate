@@ -1,3 +1,9 @@
+v4.0.0
+- Change to kodi frigate
+- Add screensaver
+- Add direct video views
+- add direct configuration of frigate/MQTT
+
 v3.0.1
 - Version updated
 

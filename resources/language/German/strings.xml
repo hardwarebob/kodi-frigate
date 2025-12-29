@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <strings>
-  <string id="32000">Kamera 1</string>
-  <string id="32001">Aktiv:</string>
-  <string id="32002">Url:</string>
-  <string id="32003">Benutzername:</string>
-  <string id="32004">Passwort:</string>
+  <string id="32000">Frigate Server</string>
+  <string id="32001">Frigate URL:</string>
+  <string id="32002">Benutzername:</string>
+  <string id="32003">Passwort:</string>
 
-  <string id="32010">Kamera 2</string>
-  <string id="32020">Kamera 3</string>
-  <string id="32030">Kamera 4</string>
-  <string id="32040">Kamera 5</string>
-  <string id="32050">Kamera 6</string>
-  <string id="32060">Kamera 7</string>
-  <string id="32070">Kamera 8</string>
+  <string id="32010">MQTT Konfiguration</string>
+  <string id="32011">MQTT Host:</string>
+  <string id="32012">MQTT Port:</string>
+  <string id="32013">MQTT Benutzername:</string>
+  <string id="32014">MQTT Passwort:</string>
+  <string id="32015">MQTT Topic Präfix:</string>
 
-  <string id="33000">Anzeige</string>
+  <string id="32020">Erkennungseinstellungen</string>
+  <string id="32021">Auslöseobjekte (Komma getrennt):</string>
+  <string id="32022">Minimale Konfidenz (%):</string>
+  <string id="32023">Nur bei neuen Ereignissen auslösen:</string>
+  <string id="32024">Auslösekameras (Komma getrennt, leer für alle):</string>
 
-  <string id="33001">Fensterbreite:</string>
-  <string id="33002">Fensterhöhe:</string>
-  <string id="33003">Aktualisierungsinterval (in msec):</string>
-  <string id="33004">Automatisches Schließen:</string>
+  <string id="33000">Anzeigeeinstellungen</string>
+
+  <string id="33001">Kamera-Fensterbreite:</string>
+  <string id="33002">Kamera-Fensterhöhe:</string>
+  <string id="33003">Schnappschuss-Aktualisierungsinterval (in msec):</string>
+  <string id="33004">Kamera-Overlay automatisch schließen:</string>
   <string id="33005">Anzeigedauer (in Sekunden):</string>
   <string id="33006">Ausrichtung:</string>
-  <string id="33007">Zwischenraum (in Pixeln):</string>
-  <string id="33008">Animation beim Öffnen/Schließen:</string>
-  <string id="33009">Bildformat-Anpassung:</string>
+  <string id="33007">Fenster-Abstand (in Pixeln):</string>
+  <string id="33008">Kamera beim Öffnen/Schließen animieren:</string>
+  <string id="33009">Kamera-Seitenverhältnis:</string>
 
   <string id="34000">Vertikal: rechts, von oben nach unten</string>
   <string id="34001">Vertikal: links, von oben nach unten</string>
@@ -42,4 +46,14 @@
   <string id="34020">Strecken</string>
   <string id="34021">Vergrößern (Abschneiden)</string>
   <string id="34022">Verkleinern (Schw. Balken)</string>
+
+  <string id="35000">Bildschirmschoner-Einstellungen</string>
+  <string id="35001">Anzahl der Kameras:</string>
+  <string id="35002">Kamerawechsel-Intervall (Sekunden):</string>
+  <string id="35003">Bildschirmschoner-Kameras (Komma getrennt, leer für alle):</string>
+
+  <string id="35010">1 Kamera</string>
+  <string id="35011">2 Kameras</string>
+  <string id="35012">3 Kameras</string>
+  <string id="35013">4 Kameras</string>
 </strings>

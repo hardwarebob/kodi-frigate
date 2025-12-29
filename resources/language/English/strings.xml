@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <strings>
-  <string id="32000">Camera 1</string>
-  <string id="32001">Active:</string>
-  <string id="32002">Image Url:</string>
-  <string id="32003">Username:</string>
-  <string id="32004">Password:</string>
+  <string id="32000">Frigate Server</string>
+  <string id="32001">Frigate URL:</string>
+  <string id="32002">Username:</string>
+  <string id="32003">Password:</string>
 
-  <string id="32010">Camera 2</string>
-  <string id="32020">Camera 3</string>
-  <string id="32030">Camera 4</string>
-  <string id="32040">Camera 5</string>
-  <string id="32050">Camera 6</string>
-  <string id="32060">Camera 7</string>
-  <string id="32070">Camera 8</string>
+  <string id="32010">MQTT Configuration</string>
+  <string id="32011">MQTT Host:</string>
+  <string id="32012">MQTT Port:</string>
+  <string id="32013">MQTT Username:</string>
+  <string id="32014">MQTT Password:</string>
+  <string id="32015">MQTT Topic Prefix:</string>
 
-  <string id="33000">Behavior</string>
+  <string id="32020">Detection Settings</string>
+  <string id="32021">Trigger Objects (comma separated):</string>
+  <string id="32022">Minimum Confidence (%):</string>
+  <string id="32023">Trigger on New Events Only:</string>
+  <string id="32024">Trigger Cameras (comma separated, blank for all):</string>
 
-  <string id="33001">Window Width:</string>
-  <string id="33002">Window Height:</string>
-  <string id="33003">Refresh Interval (in milliseconds):</string>
+  <string id="33000">Display Settings</string>
 
-  <string id="33004">Enable auto-close after duration:</string>
-  <string id="33005">Duration (in seconds):</string>
+  <string id="33001">Camera Window Width:</string>
+  <string id="33002">Camera Window Height:</string>
+  <string id="33003">Snapshot Refresh Interval (in milliseconds):</string>
+
+  <string id="33004">Auto-close camera overlay:</string>
+  <string id="33005">Display Duration (in seconds):</string>
 
   <string id="33006">Alignment:</string>
-  <string id="33007">Padding (in Pixels):</string>
-  <string id="33008">Animate on open/close:</string>
-  <string id="33009">Aspect Ratio:</string>
+  <string id="33007">Window Padding (in Pixels):</string>
+  <string id="33008">Animate camera on open/close:</string>
+  <string id="33009">Camera Aspect Ratio:</string>
 
   <string id="34000">Vertical: right, from top to bottom</string>
   <string id="34001">Vertical: left, from top to bottom</string>
@@ -44,4 +48,14 @@
   <string id="34020">Stretch</string>
   <string id="34021">Scale up (crops)</string>
   <string id="34022">Scale down (black bars)</string>
+
+  <string id="35000">Screensaver Settings</string>
+  <string id="35001">Number of Cameras:</string>
+  <string id="35002">Camera Cycle Interval (seconds):</string>
+  <string id="35003">Screensaver Cameras (comma separated, blank for all):</string>
+
+  <string id="35010">1 Camera</string>
+  <string id="35011">2 Cameras</string>
+  <string id="35012">3 Cameras</string>
+  <string id="35013">4 Cameras</string>
 </strings>

@@ -1,7 +1,7 @@
 # Kodi Media Center language file
-# Addon Name: Security Cam Overlay
-# Addon id: script.securitycam
-# Addon Provider: Paulemann
+# Addon Name: Frigate NVR Integration
+# Addon id: service.kodi.frigate
+# Addon Provider: Matthew Parslow, Paulemann
 msgid ""
 msgstr ""
 "Project-Id-Version: Kodi-Addons\n"
@@ -17,75 +17,87 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 msgctxt "#32000"
-msgid "Camera 1"
+msgid "Frigate Server"
 msgstr ""
 
 msgctxt "#32001"
-msgid "Active:"
+msgid "Frigate URL:"
 msgstr ""
 
 msgctxt "#32002"
-msgid "Image Url:"
-msgstr ""
-
-msgctxt "#32003"
 msgid "Username:"
 msgstr ""
 
-msgctxt "#32004"
+msgctxt "#32003"
 msgid "Password:"
 msgstr ""
 
 msgctxt "#32010"
-msgid "Camera 2"
+msgid "MQTT Configuration"
+msgstr ""
+
+msgctxt "#32011"
+msgid "MQTT Host:"
+msgstr ""
+
+msgctxt "#32012"
+msgid "MQTT Port:"
+msgstr ""
+
+msgctxt "#32013"
+msgid "MQTT Username:"
+msgstr ""
+
+msgctxt "#32014"
+msgid "MQTT Password:"
+msgstr ""
+
+msgctxt "#32015"
+msgid "MQTT Topic Prefix:"
 msgstr ""
 
 msgctxt "#32020"
-msgid "Camera 3"
+msgid "Detection Settings"
 msgstr ""
 
-msgctxt "#32030"
-msgid "Camera 4"
+msgctxt "#32021"
+msgid "Trigger Objects (comma separated):"
 msgstr ""
 
-msgctxt "#32040"
-msgid "Camera 5"
+msgctxt "#32022"
+msgid "Minimum Confidence (%):"
 msgstr ""
 
-msgctxt "#32050"
-msgid "Camera 6"
+msgctxt "#32023"
+msgid "Trigger on New Events Only:"
 msgstr ""
 
-msgctxt "#32060"
-msgid "Camera 7"
-msgstr ""
-
-msgctxt "#32070"
-msgid "Camera 8"
+msgctxt "#32024"
+msgid "Trigger Cameras (comma separated, blank for all):"
 msgstr ""
 
 msgctxt "#33000"
-msgid "Behavior"
+msgid "Display Settings"
 msgstr ""
 
 msgctxt "#33001"
-msgid "Window Width:"
+msgid "Camera Window Width:"
 msgstr ""
 
 msgctxt "#33002"
-msgid "Window Height:"
+msgid "Camera Window Height:"
 msgstr ""
 
 msgctxt "#33003"
-msgid "Refresh Interval (in milliseconds):"
+msgid "Snapshot Refresh Interval (in milliseconds):"
 msgstr ""
 
 msgctxt "#33004"
-msgid "Enable auto-close after duration:"
+msgid "Auto-close camera overlay:"
 msgstr ""
 
 msgctxt "#33005"
-msgid "Duration (in seconds):"
+msgid "Display Duration (in seconds):"
 msgstr ""
 
 msgctxt "#33006"
@@ -93,15 +105,15 @@ msgid "Alignment:"
 msgstr ""
 
 msgctxt "#33007"
-msgid "Padding (in Pixels):"
+msgid "Window Padding (in Pixels):"
 msgstr ""
 
 msgctxt "#33008"
-msgid "Animate on open/close:"
+msgid "Animate camera on open/close:"
 msgstr ""
 
 msgctxt "#33009"
-msgid "Aspect Ratio:"
+msgid "Camera Aspect Ratio:"
 msgstr ""
 
 msgctxt "#34000"
@@ -162,4 +174,36 @@ msgstr ""
 
 msgctxt "#34022"
 msgid "Scale down (black bars)"
+msgstr ""
+
+msgctxt "#35000"
+msgid "Screensaver Settings"
+msgstr ""
+
+msgctxt "#35001"
+msgid "Number of Cameras:"
+msgstr ""
+
+msgctxt "#35002"
+msgid "Camera Cycle Interval (seconds):"
+msgstr ""
+
+msgctxt "#35003"
+msgid "Screensaver Cameras (comma separated, blank for all):"
+msgstr ""
+
+msgctxt "#35010"
+msgid "1 Camera"
+msgstr ""
+
+msgctxt "#35011"
+msgid "2 Cameras"
+msgstr ""
+
+msgctxt "#35012"
+msgid "3 Cameras"
+msgstr ""
+
+msgctxt "#35013"
+msgid "4 Cameras"
 msgstr ""
