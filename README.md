@@ -34,9 +34,10 @@ A Kodi addon that integrates with [Frigate NVR](https://frigate.video/) to autom
 
 ## Installation
 
-### From ZIP File
+### From GitHub Release (Recommended)
 
-1. Download the latest release ZIP file
+1. Download the latest release ZIP file from [GitHub Releases](https://github.com/hardwarebob/kodi-frigate/releases/latest)
+   - Direct link to v4.0.0: [service.kodi.frigate-4.0.0.zip](https://github.com/hardwarebob/kodi-frigate/releases/tag/v4.0.0)
 2. In Kodi, go to **Settings → Add-ons → Install from zip file**
 3. Navigate to the downloaded ZIP and select it
 4. Wait for the installation confirmation
@@ -45,13 +46,17 @@ A Kodi addon that integrates with [Frigate NVR](https://frigate.video/) to autom
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/kodi-frigate.git
+   git clone https://github.com/hardwarebob/kodi-frigate.git
    cd kodi-frigate
    ```
 
-2. Create a ZIP file:
+2. Build the release ZIP:
    ```bash
-   zip -r service.kodi.frigate.zip . -x "*.git*" "*.DS_Store"
+   ./build-release.sh
+   ```
+   Or manually create a ZIP file:
+   ```bash
+   zip -r service.kodi.frigate.zip . -x "*.git*" "*.DS_Store" "img/*" "build-release.sh"
    ```
 
 3. Install the ZIP file in Kodi as described above
