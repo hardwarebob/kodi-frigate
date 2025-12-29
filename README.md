@@ -2,6 +2,10 @@
 
 A Kodi addon that integrates with [Frigate NVR](https://frigate.video/) to automatically display camera feeds when objects are detected. This addon connects to your Frigate instance via MQTT to receive real-time detection events and displays the relevant camera as an overlay on your Kodi screen.
 
+![Screensaver showing multiple cameras](img/kodifrigatescreensaver.png)
+
+![Camera overlay during movie playback](img/kodifrigatemovieoverlay.png)
+
 ## Features
 
 - **Automatic Camera Discovery**: Queries Frigate API to discover all configured cameras
@@ -58,11 +62,15 @@ After installation, configure the addon in **Settings → Add-ons → My add-ons
 
 ### Frigate Server Settings
 
+![Frigate server settings](img/kodifrigatesettingsfrigate.png)
+
 - **Frigate URL**: The URL of your Frigate instance (e.g., `http://192.168.1.100:5000`)
 - **Username**: Optional username if Frigate authentication is enabled
 - **Password**: Optional password if Frigate authentication is enabled
 
 ### MQTT Configuration
+
+![MQTT settings](img/kodifrigatesettingsmqtt.png)
 
 - **MQTT Host**: The hostname or IP address of your MQTT broker (e.g., `192.168.1.100`)
 - **MQTT Port**: The MQTT broker port (default: `1883`)
@@ -72,12 +80,16 @@ After installation, configure the addon in **Settings → Add-ons → My add-ons
 
 ### Detection Settings
 
+![Detection settings](img/kodifrigatesettingsdetection.png)
+
 - **Trigger Objects**: Comma-separated list of object types that trigger camera display (e.g., `person,car,dog,cat`)
 - **Minimum Confidence**: Minimum confidence percentage (0-100) for detections to trigger display (default: `70`)
 - **Trigger on New Events Only**: If enabled, only "new" detection events trigger display (recommended)
 - **Trigger Cameras**: Optional comma-separated list of camera names to monitor (leave empty for all cameras)
 
 ### Display Behavior
+
+![Display settings](img/kodifrigatesettingsdisplay.png)
 
 - **Window Width**: Width of the camera overlay in pixels (default: `640`)
 - **Window Height**: Height of the camera overlay in pixels (default: `480`)
@@ -89,6 +101,8 @@ After installation, configure the addon in **Settings → Add-ons → My add-ons
 - **Aspect Ratio**: How to handle aspect ratio (Stretch, Scale up, Scale down - default: Scale down)
 
 ### Screensaver Settings
+
+![Screensaver settings](img/kodifrigatesettingsscreensaver.png)
 
 - **Number of Cameras**: Display 1, 2, 3, or 4 cameras simultaneously
   - 1 camera: Single fullscreen view (direct playback, no ffmpeg required)
@@ -103,7 +117,7 @@ After installation, configure the addon in **Settings → Add-ons → My add-ons
 ### Event-Triggered Camera Display
 
 1. **Service Startup**: When Kodi starts, the Frigate service starts in the background
-2. **Camera Discovery**: The service queries the Frigate API to get the list of cameras
+2. **Camera Discovery**: The service queries the Frigate API to discover all configured cameras
 3. **MQTT Connection**: The service connects to the MQTT broker and subscribes to `frigate/events`
 4. **Event Processing**: When an object is detected by Frigate:
    - The service receives the MQTT event
@@ -113,6 +127,12 @@ After installation, configure the addon in **Settings → Add-ons → My add-ons
    - Triggers the camera display if all conditions are met
 5. **Camera Display**: The camera overlay appears showing live snapshots from Frigate
 6. **Auto-close**: After the configured duration, the overlay automatically closes
+
+### Video Plugin
+
+![Camera list in video add-ons](img/kodifrigatecameralist.png)
+
+The addon also provides a video plugin that allows you to browse and view your Frigate cameras directly from Kodi's video add-ons section. This gives you on-demand access to all your camera feeds.
 
 ### Screensaver
 
