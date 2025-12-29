@@ -49,17 +49,15 @@ class FrigateScreensaver(xbmcgui.WindowXML):
         self.pipe_path = None
 
     def onInit(self):
-        """Initialize screensaver - called automatically by Kodi"""
-        # Prevent multiple initialization
-        if self.initialized:
-            xbmc.log('[Frigate Screensaver] Already initialized, skipping', xbmc.LOGDEBUG)
-            return
+        """Called by Kodi when window is initialized - we do nothing here"""
+        xbmc.log('[Frigate Screensaver] onInit() called by Kodi', xbmc.LOGINFO)
+        # We initialize in init_screensaver() instead, called before show()
 
-        self.initialized = True
+    def init_screensaver(self):
+        """Initialize screensaver settings and cameras"""
+        xbmc.log('[Frigate Screensaver] Initializing screensaver', xbmc.LOGINFO)
 
         try:
-            xbmc.log('[Frigate Screensaver] Initializing', xbmc.LOGINFO)
-
             # Load settings
             cycle_interval = int(self.addon.getSetting('screensaver_cycle_interval') or '10')
             screensaver_cameras = self.addon.getSetting('screensaver_cameras') or ''
@@ -125,6 +123,9 @@ class FrigateScreensaver(xbmcgui.WindowXML):
             self.cycle_thread.daemon = True
             self.running = True
             self.cycle_thread.start()
+
+            # Mark initialization as complete - this allows the main loop to proceed
+            self.initialized = True
             xbmc.log('[Frigate Screensaver] Initialization complete', xbmc.LOGINFO)
 
         except Exception as e:
@@ -135,29 +136,51 @@ class FrigateScreensaver(xbmcgui.WindowXML):
 
     def _cycle_thread(self):
         """Background thread for cycling cameras and detecting user activity"""
-        while self.running and not self.monitor.abortRequested():
-            if self.monitor.waitForAbort(1):
-                break
+        import time
 
-            # Check if user is active (idle time has reset to a low value)
-            # When user interacts, idle time resets to 0 or near 0
-            current_idle_time = xbmc.getGlobalIdleTime()
-            if current_idle_time < 3:
-                # User activity detected - exit screensaver
-                xbmc.log('[Frigate Screensaver] User activity detected (idle time: {}s), exiting screensaver'.format(current_idle_time), xbmc.LOGINFO)
-                self.running = False
+        # Record the start time and initial idle time
+        start_time = time.time()
+        initial_idle_time = xbmc.getGlobalIdleTime()
 
-                # Stop player and ffmpeg
-                if self.player.isPlaying():
-                    self.player.stop()
-                self._stop_ffmpeg()
+        xbmc.log('[Frigate Screensaver] Activity detection started (initial idle: {}s)'.format(initial_idle_time), xbmc.LOGDEBUG)
 
-                # Close the screensaver window
-                try:
-                    self.close()
-                except:
-                    pass
-                break
+        loop_count = 0
+        while self.running:
+            # Don't use monitor.waitForAbort() as it causes Kodi to close the screensaver
+            # when video playback starts. Instead, just sleep.
+            xbmc.sleep(1000)
+
+            loop_count += 1
+            elapsed = time.time() - start_time
+
+            # Only check for activity after screensaver has been running for at least 2 seconds
+            # This prevents false positives when the screensaver first starts
+            if elapsed > 3:
+                # Check if user is active (idle time has reset to a low value)
+                # When user interacts, idle time resets to 0 or near 0
+                current_idle_time = xbmc.getGlobalIdleTime()
+
+                # Log idle time every 5 seconds for debugging
+                if loop_count % 5 == 0:
+                    xbmc.log('[Frigate Screensaver] Loop {}: elapsed={:.1f}s, idle={}s, running={}, cycle_timer={}'.format(
+                        loop_count, elapsed, current_idle_time, self.running, self.cycle_timer), xbmc.LOGINFO)
+
+                if current_idle_time < 3:
+                    # User activity detected - exit screensaver
+                    xbmc.log('[Frigate Screensaver] User activity detected (idle time: {}s), exiting screensaver'.format(current_idle_time), xbmc.LOGINFO)
+                    self.running = False
+
+                    # Stop player and ffmpeg
+                    if self.player.isPlaying():
+                        self.player.stop()
+                    self._stop_ffmpeg()
+
+                    # Close the screensaver window
+                    try:
+                        self.close()
+                    except:
+                        pass
+                    break
 
             # Cycle to next set of cameras
             self.cycle_timer -= 1
@@ -296,16 +319,16 @@ class FrigateScreensaver(xbmcgui.WindowXML):
 
         # Build filter complex for grid layout
         if len(cameras_to_display) == 1:
-            # Single camera - just scale to fullscreen
-            filter_complex = '[0:v]scale=1920x1080[out]'
+            # Single camera - just scale to fullscreen on black background
+            filter_complex = '[0:v]scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=0x000000[out]'
         else:
-            # Multiple cameras - create grid with xstack
+            # Multiple cameras - create grid with xstack on black background
             filter_parts = []
             for i in range(len(cameras_to_display)):
-                # Scale each input to fit in grid cell
+                # Scale each input to fit in grid cell with black padding
                 cell_width = 1920 // grid_cols
                 cell_height = 1080 // grid_rows
-                filter_parts.append('[{}:v]scale={}:{}:force_original_aspect_ratio=decrease,pad={}:{}:(ow-iw)/2:(oh-ih)/2[v{}]'.format(
+                filter_parts.append('[{}:v]scale={}:{}:force_original_aspect_ratio=decrease,pad={}:{}:(ow-iw)/2:(oh-ih)/2:color=0x000000[v{}]'.format(
                     i, cell_width, cell_height, cell_width, cell_height, i))
 
             # Create xstack layout
@@ -320,7 +343,8 @@ class FrigateScreensaver(xbmcgui.WindowXML):
             else:
                 layout = '0_0|w0_0'
 
-            filter_complex = ';'.join(filter_parts) + ';{}xstack=inputs={}:layout={}[out]'.format(
+            # Stack cameras and pad final output to 1920x1080 with black background
+            filter_complex = ';'.join(filter_parts) + ';{}xstack=inputs={}:layout={}:fill=black[stacked];[stacked]pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=0x000000[out]'.format(
                 inputs, len(cameras_to_display), layout)
 
         # Output to named pipe as MPEG-TS - will write to pipe_path directly
@@ -458,18 +482,69 @@ class FrigateScreensaver(xbmcgui.WindowXML):
 
 # Entry point when run directly
 if __name__ == '__main__':
-    xbmc.log('[Frigate Screensaver] Starting screensaver', xbmc.LOGINFO)
+    import time
+    start_timestamp = time.time()
+    xbmc.log('[Frigate Screensaver] Starting screensaver at {}'.format(start_timestamp), xbmc.LOGINFO)
     screensaver = FrigateScreensaver('screensaver-frigate.xml', addon.getAddonInfo('path'), 'default', '1080i')
-    screensaver.doModal()
+
+    # Initialize BEFORE showing the window to avoid Kodi's 30-second delay
+    xbmc.log('[Frigate Screensaver] Calling init_screensaver() at {}'.format(time.time()), xbmc.LOGINFO)
+    screensaver.init_screensaver()
+    init_elapsed = time.time() - start_timestamp
+    xbmc.log('[Frigate Screensaver] Initialization completed in {:.1f}s'.format(init_elapsed), xbmc.LOGINFO)
+
+    # Set running flag before showing to ensure the main loop continues
+    screensaver.running = True
+    xbmc.log('[Frigate Screensaver] Calling show() at {}'.format(time.time()), xbmc.LOGINFO)
+    screensaver.show()
+    xbmc.log('[Frigate Screensaver] show() returned at {}'.format(time.time()), xbmc.LOGINFO)
+
+    # Keep the script alive while screensaver is running
+    # This prevents Kodi from killing the script after 5 seconds
+    monitor = xbmc.Monitor()
+
+    # Main loop - keep script alive
+    xbmc.log('[Frigate Screensaver] Entering main loop, running={}'.format(screensaver.running), xbmc.LOGINFO)
+    main_loop_count = 0
+    last_player_check = time.time()
+    while screensaver.running:
+        main_loop_count += 1
+
+        # Check if player is still playing every 2 seconds
+        if time.time() - last_player_check >= 2:
+            last_player_check = time.time()
+            is_playing = screensaver.player.isPlaying()
+            if not is_playing:
+                xbmc.log('[Frigate Screensaver] Player stopped unexpectedly, exiting screensaver', xbmc.LOGWARNING)
+                screensaver.running = False
+                break
+
+        if main_loop_count % 5 == 0:
+            xbmc.log('[Frigate Screensaver] Main loop iteration {}, running={}, playerActive={}'.format(
+                main_loop_count, screensaver.running, screensaver.player.isPlaying()), xbmc.LOGINFO)
+
+        # Don't use monitor.waitForAbort() as it causes Kodi to close the screensaver
+        # when video playback starts. Just sleep instead.
+        xbmc.sleep(1000)
+
+    xbmc.log('[Frigate Screensaver] Main loop exited, running={}'.format(screensaver.running), xbmc.LOGINFO)
 
     # Cleanup on exit
     try:
         screensaver.running = False
+        if screensaver.cycle_thread:
+            screensaver.cycle_thread.join(timeout=2)
         if screensaver.player.isPlaying():
             screensaver.player.stop()
         if screensaver.ffmpeg_process:
             screensaver.ffmpeg_process.kill()
     except:
         pass
+
+    try:
+        screensaver.close()
+    except:
+        pass
+
     del screensaver
     xbmc.log('[Frigate Screensaver] Screensaver stopped', xbmc.LOGINFO)
